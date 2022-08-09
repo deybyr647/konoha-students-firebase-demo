@@ -1,17 +1,19 @@
+import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
-//import { ISong } from "./spotify";
+import { StudentProps } from "../admin/Student";
 import styles from "../../styles/Home.module.scss";
 
-const StudentCard = () => {
+
+const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
     return (
         <Card
-            className={`bg-platinum text-onyx mb-3 border-medpurple`}
+            className={`bg-platinum text-onyx m-3 border-medpurple`}
         >
             <Image
                 className={"card-img-top rounded ps-3 pe-3 pt-3"}
-                src={"/images/unknown.png"}
-                alt={"Student"}
+                src={image}
+                alt={name}
             />
 
             <Card.Body>
@@ -21,11 +23,17 @@ const StudentCard = () => {
                         target={"_blank"}
                         rel={"noopener noreferrer"}
                         className={""}
-                        title={`First Last`}
+                        title={name}
                     >
-                        First Last
+                        {name}
                     </a>
                 </Card.Title>
+
+                <Container className={"d-flex flex-column"}>
+                    <Card.Text>Cohort: {cohort}</Card.Text>
+                    <Card.Text>Age: {age}</Card.Text>
+                    <Card.Link className={"btn btn-sizzlingRed"} href={`/student/${uid}`}>Edit Student Data</Card.Link>
+                </Container>
             </Card.Body>
         </Card>
     );

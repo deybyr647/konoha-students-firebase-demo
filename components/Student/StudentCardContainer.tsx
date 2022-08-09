@@ -12,7 +12,7 @@ const StudentCardContainer = () => {
 
     useEffect(() => {
         (async () => {
-            const req = await fetch("/api/hello");
+            const req = await fetch("/api/students");
             const data = await req.json();
 
             setStudents(data);
@@ -25,7 +25,7 @@ const StudentCardContainer = () => {
             <Jumbotron
                 className={`d-flex align-items-center justify-content-between bg-onyx text-platinum`}
             >
-                <h3 className={"m-0 p-0"}>Fetching Music...</h3>
+                <h3 className={"m-0 p-0"}>Fetching Students...</h3>
                 <Spinner animation={"grow"} variant={"medpurple"} />
             </Jumbotron>
         );
@@ -33,7 +33,7 @@ const StudentCardContainer = () => {
 
     return (
         <Jumbotron
-            className={`d-flex flex-column align-items-center bg-onyx`}
+            className={`d-flex flex-row flex-wrap justify-content-center bg-onyx`}
         >
             {/*{songs.map((s: ISong) => (
                 <SongCard
@@ -45,7 +45,16 @@ const StudentCardContainer = () => {
                 />
             ))}*/}
 
-            <StudentCard/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
+            <StudentCard cohort={"Medidata-JS"} age={16} name={"Rasul Mohammad"} image={"/images/unknown.png"} uid={"0"}/>
         </Jumbotron>
     );
 };
