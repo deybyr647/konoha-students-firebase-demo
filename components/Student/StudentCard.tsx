@@ -1,6 +1,8 @@
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
+
+import UpdateStudentForm from "./UpdateStudentForm";
 import { StudentProps } from "../admin/Student";
 import styles from "../../styles/Home.module.scss";
 
@@ -34,7 +36,11 @@ const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
                 <Container className={"d-flex flex-column"}>
                     <Card.Text>Cohort: {cohort}</Card.Text>
                     <Card.Text>Age: {age}</Card.Text>
-                    <Card.Link className={"btn btn-sizzlingRed"} href={`/student/${uid}`}>Edit Student Data</Card.Link>
+                </Container>
+
+                <Container className={"d-flex flex-row justify-content-between mt-4"}>
+                    <Card.Link className={"btn btn-sizzlingRed"} href={`/student/${uid}`}>Delete Student</Card.Link>
+                    <UpdateStudentForm cohort={cohort} name={name} age={age} image={image} uid={uid}/>
                 </Container>
             </Card.Body>
         </Card>

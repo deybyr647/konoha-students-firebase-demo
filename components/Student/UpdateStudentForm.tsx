@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter } from "next/router";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { addStudent } from "../admin/Util";
+import { updateStudent } from "../admin/Util";
 import { StudentProps } from "../admin/Student";
 
-const ModalForm = () => {
+const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
     const router = useRouter();
 
     const [show, setShow] = useState<boolean>(false);
-    const [name, setName] = useState<string>("");
-    const [image, setImage] = useState<string>("");
-    const [age, setAge] = useState<string>("");
-    const [cohort, setCohort] = useState<string>("");
+    const [studentName, setName] = useState<string>("");
+    const [studentImage, setImage] = useState<string>("");
+    const [studentAge, setAge] = useState<string>("");
+    const [studentCohort, setCohort] = useState<string>("");
 
     const handleClose = () => {
         setName("");
@@ -25,7 +25,9 @@ const ModalForm = () => {
         setShow(false);
     }
 
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+    }
 
     //@ts-ignore
     const formChangeHandler = (e) => {
@@ -43,30 +45,38 @@ const ModalForm = () => {
         e.preventDefault();
 
         const studentData: StudentProps = {
-            cohort: cohort,
-            name: name,
-            age: parseInt(age),
-            image: image
+            cohort: studentCohort,
+            name: studentName,
+            age: parseInt(studentAge),
+            image: studentImage,
+            uid: uid
         };
 
 
         (async ()=> {
-            await addStudent("/api/students", studentData);
+            await updateStudent("/api/students", studentData);
         })();
 
         handleClose();
         router.reload();
     }
 
+    useEffect(() => {
+        setName(name);
+        setImage(image);
+        setAge(`${age}`);
+        setCohort(cohort);
+    }, [name, image, age, cohort])
+
     return (
         <>
             <Button variant={"ceruleanFrost"} onClick={handleShow} className={"mr-5"}>
-                Add Student
+                Edit Student
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New Student</Modal.Title>
+                    <Modal.Title>Update Student</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -74,7 +84,7 @@ const ModalForm = () => {
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={name}
+                                value={studentName}
                                 onChange={formChangeHandler}
                                 placeholder={"John Doe"}
                                 autoFocus
@@ -85,7 +95,7 @@ const ModalForm = () => {
                             <Form.Label>Age</Form.Label>
                             <Form.Control
                                 type={"number"}
-                                value={age}
+                                value={studentAge}
                                 onChange={formChangeHandler}
                                 placeholder={"18"}
                                 autoFocus
@@ -96,7 +106,7 @@ const ModalForm = () => {
                             <Form.Label>Cohort</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={cohort}
+                                value={studentCohort}
                                 onChange={formChangeHandler}
                                 placeholder={"MLB-HTML"}
                                 autoFocus
@@ -107,7 +117,7 @@ const ModalForm = () => {
                             <Form.Label>Image Link</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={image}
+                                value={studentImage}
                                 onChange={formChangeHandler}
                                 placeholder={"https://i.imgur.com/Mdw2mMo.png"}
                                 autoFocus
