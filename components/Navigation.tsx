@@ -4,6 +4,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 
+import ModalForm from "./Student/NewStudentForm";
+
 const Navigation = () => {
     return (
         <Navbar
@@ -27,13 +29,15 @@ const Navigation = () => {
                     </Nav.Link>
 
                     <Nav.Link
-                        href={"/api/hello"}
+                        href={"/api/students"}
                         target={"_blank"}
                         rel={"noopener noreferrer"}
                         className={`text-ghostWhite`}
                     >
                         API
                     </Nav.Link>
+
+                    <ModalForm/>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

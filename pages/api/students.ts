@@ -61,8 +61,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(500).send({ message: "POST Request Failed", error: err });
     }
   }
-
-  res.status(200).json({ name: 'John Doe' })
 }
 
 export default handler;

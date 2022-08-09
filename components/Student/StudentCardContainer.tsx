@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
-//import { ISong } from "./spotify";
 import Jumbotron from "../Jumbotron";
 import StudentCard from "./StudentCard";
 import styles from "../../styles/Home.module.scss";
@@ -24,17 +23,17 @@ const StudentCardContainer = () => {
     if (!isLoaded) {
         return (
             <Jumbotron
-                className={`d-flex align-items-center justify-content-between bg-onyx text-platinum`}
+                className={"d-flex flex-column align-items-center"}
             >
-                <h3 className={"m-0 p-0"}>Fetching Students...</h3>
-                <Spinner animation={"grow"} variant={"medpurple"} />
+                <Spinner animation={"grow"} variant={"sizzlingRed"} style={{width: "40px", height: "40px"}}/>
+                <h3 className={"mt-4"}>Fetching Students...</h3>
             </Jumbotron>
         );
     }
 
     return (
         <Jumbotron
-            className={`d-flex flex-row flex-wrap justify-content-center bg-onyx`}
+            className={"d-flex flex-row flex-wrap justify-content-center bg-oceanGreen"}
         >
             {students.map((student: StudentProps) => (
                 <StudentCard
