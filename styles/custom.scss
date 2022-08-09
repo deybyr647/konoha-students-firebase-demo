@@ -1,0 +1,15 @@
+$spaceCadet: #283044;
+$sizzlingRed: #E84855;
+$oceanGreen: #43C59E;
+$ceruleanFrost: #6D98BA;
+$ghostWhite: #F4F4F9;
+
+$theme-colors: (
+        "spaceCadet": $spaceCadet,
+        "sizzlingRed": $sizzlingRed,
+        "oceanGreen": $oceanGreen,
+        "ceruleanFrost": $ceruleanFrost,
+        "white": $ghostWhite
+);
+
+@import "~bootstrap/scss/bootstrap";
