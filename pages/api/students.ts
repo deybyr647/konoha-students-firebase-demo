@@ -1,10 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import db from "../../components/admin/FirebaseConfig";
-import { Student, StudentProps } from "../../components/admin/Student";
+import { StudentProps } from "../../components/admin/Student";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-
   const { method, body } = req;
   const studentsRef = db.collection("students");
 
@@ -59,6 +58,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } catch (err) {
       console.error(err);
       res.status(500).send({ message: "POST Request Failed", error: err });
+    }
+  }
+
+  if (method === "DELETE") {
+    const { uid } = body;
+
+    try {
+      await studentsRef.doc(uid).delete();
+      console.log(`Deleted student "${body.name}" successfully`);
+      res.status(200).send({ message: "DELETE Request Succeeded" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send({ message: "DELETE Request Failed", error: err });
     }
   }
 }
