@@ -3,7 +3,6 @@ import Spinner from "react-bootstrap/Spinner";
 
 import Jumbotron from "../Jumbotron";
 import StudentCard from "./StudentCard";
-import styles from "../../styles/Home.module.scss";
 import { StudentProps } from "../admin/Student";
 
 const StudentCardContainer = () => {
