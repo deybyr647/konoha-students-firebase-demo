@@ -14,6 +14,8 @@ const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
                 className={"card-img-top rounded ps-3 pe-3 pt-3"}
                 src={image}
                 alt={name}
+                width={400}
+                height={400}
             />
 
             <Card.Body>
