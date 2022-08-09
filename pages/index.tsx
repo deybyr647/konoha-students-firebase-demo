@@ -10,6 +10,7 @@ import Jumbotron from "../components/Jumbotron";
 import Metadata from "../components/Metadata";
 import Navigation from "../components/Navigation";
 import StudentCardContainer from "../components/Student/StudentCardContainer";
+import Footer from "../components/Footer";
 
 const LandingPageContent = () => {
   return (
@@ -40,6 +41,7 @@ const LandingPage = () => {
           <Metadata/>
           <Navigation/>
           <LandingPageContent/>
+          <Footer/>
       </>
   )
 }
