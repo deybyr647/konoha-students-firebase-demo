@@ -1,55 +1,35 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import Link from "next/link";
+import { Nav, Navbar, Image } from "react-bootstrap";
 
 const Navigation = () => {
     return (
         <Navbar
-            bg={"maxpurple"}
+            bg={"spaceCadet"}
             expand={"lg"}
             className={"w-100 mb-3 sticky-top px-3"}
         >
-            <Navbar.Brand>JC</Navbar.Brand>
+            <Navbar.Brand>
+                <Image alt={"logo"} width={50} src={"/images/obito-ms.jpeg"} className={"rounded-circle"}/>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={"navigation-nav"} />
             <Navbar.Collapse id={"navigation-nav"}>
                 <Nav className={"ms-auto text-center"}>
                     <Nav.Link
-                        href={"https://open.spotify.com/artist/6Av6GMCOznZIlHuNcBWgf4"}
+                        href={"https://github.com/deybyr647/MLB-MD-firebase-demo"}
                         target={"_blank"}
                         rel={"noopener noreferrer"}
+                        className={`text-ghostWhite`}
                     >
-                        Spotify
+                        GitHub
                     </Nav.Link>
 
                     <Nav.Link
-                        href={"https://soundcloud.com/JAYCRITCH"}
+                        href={"/api/hello"}
                         target={"_blank"}
                         rel={"noopener noreferrer"}
+                        className={`text-ghostWhite`}
                     >
-                        SoundCloud
-                    </Nav.Link>
-
-                    <Nav.Link
-                        href={"https://music.apple.com/us/artist/jay-critch/1180942034"}
-                        target={"_blank"}
-                        rel={"noopener noreferrer"}
-                    >
-                        Apple Music
-                    </Nav.Link>
-
-                    <Nav.Link
-                        href={"https://www.talkmoneytme.net/"}
-                        target={"_blank"}
-                        rel={"noopener noreferrer"}
-                    >
-                        Talk Money Shop
-                    </Nav.Link>
-
-                    <Nav.Link
-                        href={"/api/about"}
-                        target={"_blank"}
-                        rel={"noopener noreferrer"}
-                    >
-                        Extra
+                        API
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
