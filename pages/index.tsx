@@ -17,7 +17,7 @@ const LandingPageContent = () => {
             <Jumbotron className={"d-flex flex-column justify-content-center align-items-center bg-ceruleanFrost"}>
                 <Image src={"/images/obito-ms.jpeg"} alt={"Obito-MS"} className={`rounded-circle w-25`}/>
                 <Container>
-                    <h1 className={"text-center mt-4"}>MLB-MD Student Roster</h1>
+                    <h1 className={"text-center mt-4"}>Ninjas of Konohagakure</h1>
                 </Container>
             </Jumbotron>
           </Col>
