@@ -12,13 +12,13 @@ const Navigation = () => {
             className={"w-100 mb-3 sticky-top px-3"}
         >
             <Navbar.Brand>
-                <Image alt={"logo"} width={50} src={"/images/obito-ms.jpeg"} className={"rounded-circle"}/>
+                <Image alt={"logo"} width={50} src={"/images/konoha.jpg"} className={"rounded-circle"}/>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={"navigation-nav"} />
             <Navbar.Collapse id={"navigation-nav"}>
                 <Nav className={"ms-auto text-center"}>
                     <Nav.Link
-                        href={"https://github.com/deybyr647/MLB-MD-firebase-demo"}
+                        href={"https://github.com/deybyr647/konoha-students-firebase-demo"}
                         target={"_blank"}
                         rel={"noopener noreferrer"}
                         className={`text-ghostWhite`}
