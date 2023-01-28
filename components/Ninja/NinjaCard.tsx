@@ -24,7 +24,7 @@ const NinjaCard = ({ uid, clan, name, image, age }: NinjaProps) => {
                 age: age,
                 uid: uid
             }
-            await deleteNinja("/api/ninja", ninjaData);
+            await deleteNinja("/api/ninjas", ninjaData);
         })();
 
         router.reload();
