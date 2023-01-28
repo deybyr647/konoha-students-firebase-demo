@@ -56,7 +56,7 @@ const NinjaCard = ({ uid, clan, name, image, age }: NinjaProps) => {
                 </Card.Title>
 
                 <Container className={"d-flex flex-column"}>
-                    <Card.Text>Cohort: {clan}</Card.Text>
+                    <Card.Text>Clan: {clan}</Card.Text>
                     <Card.Text>Age: {age}</Card.Text>
                 </Container>
 
