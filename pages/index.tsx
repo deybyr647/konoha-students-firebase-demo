@@ -15,7 +15,7 @@ const LandingPageContent = () => {
         <Row>
           <Col>
             <Jumbotron className={"d-flex flex-column justify-content-center align-items-center bg-ceruleanFrost"}>
-                <Image src={"/images/konoha.jpg"} alt={"Obito-MS"} className={`rounded-circle w-25`}/>
+                <Image src={"/images/konoha.jpg"} alt={"Konoha-Crest"} className={`rounded-circle w-25`}/>
                 <Container>
                     <h1 className={"text-center mt-4"}>Ninjas of the Shinobi World</h1>
                 </Container>
