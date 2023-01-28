@@ -1,35 +1,35 @@
 //Interface for Student objects
-interface StudentProps {
+interface NinjaProps {
     uid?: string;
-    cohort: string;
+    clan: string;
     name: string;
     age: number;
     image: string;
 }
 
 //Class for Creating Students
-class Student {
+class Ninja {
     name: string;
     age: number;
-    cohort: string;
+    clan: string;
     image: string;
 
     constructor(name: string, age: number, cohort: string, image: string) {
         this.name = name;
         this.age = age;
-        this.cohort = cohort;
+        this.clan = cohort;
         this.image = image;
     }
 
-    static toFirestore(user: Student): StudentProps {
+    static toFirestore(user: Ninja): NinjaProps {
         return {
             name: user.name,
             age: user.age,
-            cohort: user.cohort,
+            clan: user.clan,
             image: user.image
         }
     }
 }
 
-export { Student };
-export type { StudentProps };
+export { Ninja };
+export type { NinjaProps };

@@ -1,33 +1,31 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { useRouter } from "next/router";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { updateStudent } from "../admin/Util";
-import { StudentProps } from "../admin/Student";
+import { addNinja } from "../admin/Util";
+import { NinjaProps } from "../admin/Ninja";
 
-const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
+const ModalForm = () => {
     const router = useRouter();
 
     const [show, setShow] = useState<boolean>(false);
-    const [studentName, setName] = useState<string>("");
-    const [studentImage, setImage] = useState<string>("");
-    const [studentAge, setAge] = useState<string>("");
-    const [studentCohort, setCohort] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [image, setImage] = useState<string>("");
+    const [age, setAge] = useState<string>("");
+    const [clan, setClan] = useState<string>("");
 
     const handleClose = () => {
         setName("");
         setImage("");
         setAge("");
-        setCohort("");
+        setClan("");
         setShow(false);
     }
 
-    const handleShow = () => {
-        setShow(true);
-    }
+    const handleShow = () => setShow(true);
 
     //@ts-ignore
     const formChangeHandler = (e) => {
@@ -35,7 +33,7 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
         const { id, value } = e.currentTarget;
 
         if (id == "name") setName(value);
-        else if (id == "cohort") setCohort(value);
+        else if (id == "clan") setClan(value);
         else if (id == "age") setAge(value);
         else if (id == "image") setImage(value);
     };
@@ -44,39 +42,31 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const studentData: StudentProps = {
-            cohort: studentCohort,
-            name: studentName,
-            age: parseInt(studentAge),
-            image: studentImage,
-            uid: uid
+        const ninjaData: NinjaProps = {
+            clan: clan,
+            name: name,
+            age: parseInt(age),
+            image: image
         };
 
 
         (async ()=> {
-            await updateStudent("/api/students", studentData);
+            await addNinja("/api/ninjas", ninjaData);
         })();
 
         handleClose();
         router.reload();
     }
 
-    useEffect(() => {
-        setName(name);
-        setImage(image);
-        setAge(`${age}`);
-        setCohort(cohort);
-    }, [name, image, age, cohort])
-
     return (
         <>
             <Button variant={"ceruleanFrost"} onClick={handleShow} className={"mr-5"}>
-                Edit Student
+                Add Ninja
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Update Student</Modal.Title>
+                    <Modal.Title>Add New Ninja</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -84,9 +74,9 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={studentName}
+                                value={name}
                                 onChange={formChangeHandler}
-                                placeholder={"John Doe"}
+                                placeholder={"Sakumo Hatake"}
                                 autoFocus
                             />
                         </Form.Group>
@@ -95,20 +85,20 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
                             <Form.Label>Age</Form.Label>
                             <Form.Control
                                 type={"number"}
-                                value={studentAge}
+                                value={age}
                                 onChange={formChangeHandler}
                                 placeholder={"18"}
                                 autoFocus
                             />
                         </Form.Group>
 
-                        <Form.Group className={"mb-3"} controlId={"cohort"}>
-                            <Form.Label>Cohort</Form.Label>
+                        <Form.Group className={"mb-3"} controlId={"clan"}>
+                            <Form.Label>Clan</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={studentCohort}
+                                value={clan}
                                 onChange={formChangeHandler}
-                                placeholder={"MLB-HTML"}
+                                placeholder={"Hyuga"}
                                 autoFocus
                             />
                         </Form.Group>
@@ -117,7 +107,7 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
                             <Form.Label>Image Link</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={studentImage}
+                                value={image}
                                 onChange={formChangeHandler}
                                 placeholder={"https://i.imgur.com/Mdw2mMo.png"}
                                 autoFocus
@@ -130,7 +120,7 @@ const ModalForm = ({ name, image, cohort, age, uid }: StudentProps) => {
                         Close
                     </Button>
                     <Button variant={"oceanGreen"} onClick={submitHandler}>
-                        Save Student
+                        Save Ninja
                     </Button>
                 </Modal.Footer>
             </Modal>

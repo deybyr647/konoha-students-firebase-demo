@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 
-import ModalForm from "./Student/NewStudentForm";
+import ModalForm from "./Ninja/NewNinjaForm";
 
 const Navigation = () => {
     return (
@@ -27,7 +27,7 @@ const Navigation = () => {
                     </Nav.Link>
 
                     <Nav.Link
-                        href={"/api/students"}
+                        href={"/api/ninjas"}
                         target={"_blank"}
                         rel={"noopener noreferrer"}
                         className={`text-ghostWhite`}

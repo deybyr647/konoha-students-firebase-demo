@@ -5,11 +5,11 @@ import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-import UpdateStudentForm from "./UpdateStudentForm";
-import { deleteStudent } from "../admin/Util";
-import { StudentProps } from "../admin/Student";
+import UpdateNinjaForm from "./UpdateNinjaForm";
+import {deleteNinja} from "../admin/Util";
+import { NinjaProps } from "../admin/Ninja";
 
-const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
+const NinjaCard = ({ uid, clan, name, image, age }: NinjaProps) => {
     const router = useRouter();
 
     //@ts-ignore
@@ -17,14 +17,14 @@ const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
         e.preventDefault();
 
         (async () => {
-            const studentData: StudentProps = {
+            const ninjaData: NinjaProps = {
                 name: name,
                 image: image,
-                cohort: cohort,
+                clan: clan,
                 age: age,
                 uid: uid
             }
-            await deleteStudent("/api/students", studentData);
+            await deleteNinja("/api/ninja", ninjaData);
         })();
 
         router.reload();
@@ -56,17 +56,17 @@ const StudentCard = ({ uid, cohort, name, image, age }: StudentProps) => {
                 </Card.Title>
 
                 <Container className={"d-flex flex-column"}>
-                    <Card.Text>Cohort: {cohort}</Card.Text>
+                    <Card.Text>Cohort: {clan}</Card.Text>
                     <Card.Text>Age: {age}</Card.Text>
                 </Container>
 
                 <Container className={"d-flex flex-row justify-content-between mt-4"}>
-                    <Button variant={"sizzlingRed"} onClick={deleteHandler}>Delete Student</Button>
-                    <UpdateStudentForm cohort={cohort} name={name} age={age} image={image} uid={uid}/>
+                    <Button variant={"sizzlingRed"} onClick={deleteHandler}>Delete Ninja</Button>
+                    <UpdateNinjaForm clan={clan} name={name} age={age} image={image} uid={uid}/>
                 </Container>
             </Card.Body>
         </Card>
     );
 };
 
-export default StudentCard;
+export default NinjaCard;

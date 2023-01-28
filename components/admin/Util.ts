@@ -1,6 +1,6 @@
-import { StudentProps } from "./Student";
+import { NinjaProps } from "./Ninja";
 
-const updateStudent = async (url: string, data: StudentProps) => {
+const updateNinja = async (url: string, data: NinjaProps) => {
     const res = await fetch(url, {
         method: "PUT",
         mode: "cors",
@@ -17,7 +17,7 @@ const updateStudent = async (url: string, data: StudentProps) => {
     return res.json();
 };
 
-const addStudent = async (url: string, data: object) => {
+const addNinja = async (url: string, data: object) => {
     const res = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -34,7 +34,7 @@ const addStudent = async (url: string, data: object) => {
     return res.json();
 };
 
-const deleteStudent = async (url: string, data: object) => {
+const deleteNinja = async (url: string, data: object) => {
     const res = await fetch(url, {
         method: "DELETE",
         mode: "cors",
@@ -51,4 +51,4 @@ const deleteStudent = async (url: string, data: object) => {
     return res.json();
 };
 
-export { addStudent, updateStudent, deleteStudent };
+export { addNinja, updateNinja, deleteNinja };

@@ -1,31 +1,33 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useRouter } from "next/router";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { addStudent } from "../admin/Util";
-import { StudentProps } from "../admin/Student";
+import { updateNinja } from "../admin/Util";
+import { NinjaProps } from "../admin/Ninja";
 
-const ModalForm = () => {
+const ModalForm = ({ name, image, clan, age, uid }: NinjaProps) => {
     const router = useRouter();
 
     const [show, setShow] = useState<boolean>(false);
-    const [name, setName] = useState<string>("");
-    const [image, setImage] = useState<string>("");
-    const [age, setAge] = useState<string>("");
-    const [cohort, setCohort] = useState<string>("");
+    const [ninjaName, setName] = useState<string>("");
+    const [ninjaImage, setImage] = useState<string>("");
+    const [ninjaAge, setAge] = useState<string>("");
+    const [ninjaClan, setClan] = useState<string>("");
 
     const handleClose = () => {
         setName("");
         setImage("");
         setAge("");
-        setCohort("");
+        setClan("");
         setShow(false);
     }
 
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+    }
 
     //@ts-ignore
     const formChangeHandler = (e) => {
@@ -33,7 +35,7 @@ const ModalForm = () => {
         const { id, value } = e.currentTarget;
 
         if (id == "name") setName(value);
-        else if (id == "cohort") setCohort(value);
+        else if (id == "clan") setClan(value);
         else if (id == "age") setAge(value);
         else if (id == "image") setImage(value);
     };
@@ -42,31 +44,39 @@ const ModalForm = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        const studentData: StudentProps = {
-            cohort: cohort,
-            name: name,
-            age: parseInt(age),
-            image: image
+        const ninjaData: NinjaProps = {
+            clan: ninjaClan,
+            name: ninjaName,
+            age: parseInt(ninjaAge),
+            image: ninjaImage,
+            uid: uid
         };
 
 
         (async ()=> {
-            await addStudent("/api/students", studentData);
+            await updateNinja("/api/ninjas", ninjaData);
         })();
 
         handleClose();
         router.reload();
     }
 
+    useEffect(() => {
+        setName(name);
+        setImage(image);
+        setAge(`${age}`);
+        setClan(clan);
+    }, [name, image, age, clan])
+
     return (
         <>
             <Button variant={"ceruleanFrost"} onClick={handleShow} className={"mr-5"}>
-                Add Student
+                Edit Ninja
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New Student</Modal.Title>
+                    <Modal.Title>Update Ninja</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -74,9 +84,9 @@ const ModalForm = () => {
                             <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={name}
+                                value={ninjaName}
                                 onChange={formChangeHandler}
-                                placeholder={"John Doe"}
+                                placeholder={"Sakumo Hatake"}
                                 autoFocus
                             />
                         </Form.Group>
@@ -85,20 +95,20 @@ const ModalForm = () => {
                             <Form.Label>Age</Form.Label>
                             <Form.Control
                                 type={"number"}
-                                value={age}
+                                value={ninjaAge}
                                 onChange={formChangeHandler}
                                 placeholder={"18"}
                                 autoFocus
                             />
                         </Form.Group>
 
-                        <Form.Group className={"mb-3"} controlId={"cohort"}>
-                            <Form.Label>Cohort</Form.Label>
+                        <Form.Group className={"mb-3"} controlId={"clan"}>
+                            <Form.Label>Clan</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={cohort}
+                                value={ninjaClan}
                                 onChange={formChangeHandler}
-                                placeholder={"MLB-HTML"}
+                                placeholder={"Hyuga"}
                                 autoFocus
                             />
                         </Form.Group>
@@ -107,7 +117,7 @@ const ModalForm = () => {
                             <Form.Label>Image Link</Form.Label>
                             <Form.Control
                                 type={"text"}
-                                value={image}
+                                value={ninjaImage}
                                 onChange={formChangeHandler}
                                 placeholder={"https://i.imgur.com/Mdw2mMo.png"}
                                 autoFocus
@@ -120,7 +130,7 @@ const ModalForm = () => {
                         Close
                     </Button>
                     <Button variant={"oceanGreen"} onClick={submitHandler}>
-                        Save Student
+                        Save Ninja
                     </Button>
                 </Modal.Footer>
             </Modal>

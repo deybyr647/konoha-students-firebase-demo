@@ -3,7 +3,7 @@ import Head from 'next/head';
 const Metadata = () => {
     return (
         <Head>
-            <title>MLB-MD Firebase Demo</title>
+            <title>Konoha Firebase Demo</title>
         </Head>
     )
 }

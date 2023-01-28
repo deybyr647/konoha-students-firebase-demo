@@ -1,20 +1,20 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import db from "../../components/admin/FirebaseConfig";
-import { StudentProps } from "../../components/admin/Student";
+import { NinjaProps } from "../../components/admin/Ninja";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method, body } = req;
-  const studentsRef = db.collection("students");
+  const ninjasRef = db.collection("ninjas");
 
   if (method === "GET") {
     const outList = [];
 
     try {
-      let allProjects = await studentsRef.get();
+      let allNinjas = await ninjasRef.get();
 
-      for (const project of allProjects.docs) {
-        outList.push({ ...project.data(), uid: project.id });
+      for (const ninja of allNinjas.docs) {
+        outList.push({ ...ninja.data(), uid: ninja.id });
       }
 
       res.status(200).json(outList);
@@ -26,16 +26,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (method === "PUT") {
     const { uid } = body;
 
-    const modifiedStudentData: StudentProps = {
-      cohort: body.cohort,
+    const modifiedninjaData: NinjaProps = {
+      clan: body.clan,
       name: body.name,
       age: body.age,
       image: body.image
     }
 
     try {
-      await studentsRef.doc(uid).set(modifiedStudentData);
-      console.log(`Updated student "${body.name}" successfully`);
+      await ninjasRef.doc(uid).set(modifiedninjaData);
+      console.log(`Updated ninja "${body.name}" successfully`);
       res.status(200).send({ message: "PUT Request Succeeded" });
     } catch (err) {
       console.error(err);
@@ -44,16 +44,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (method === "POST") {
-    const newStudentData: StudentProps = {
-      cohort: body.cohort,
+    const newNinjaData: NinjaProps = {
+      clan: body.clan,
       name: body.name,
       age: body.age,
       image: body.image
     }
 
     try {
-      await studentsRef.add(newStudentData);
-      console.log(`Added student "${body.name}" successfully`);
+      await ninjasRef.add(newNinjaData);
+      console.log(`Added ninja "${body.name}" successfully`);
       res.status(200).send({ message: "POST Request Succeeded" });
     } catch (err) {
       console.error(err);
@@ -65,8 +65,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { uid } = body;
 
     try {
-      await studentsRef.doc(uid).delete();
-      console.log(`Deleted student "${body.name}" successfully`);
+      await ninjasRef.doc(uid).delete();
+      console.log(`Deleted ninja "${body.name}" successfully`);
       res.status(200).send({ message: "DELETE Request Succeeded" });
     } catch (err) {
       console.error(err);

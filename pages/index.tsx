@@ -6,7 +6,7 @@ import Image from "react-bootstrap/Image";
 import Jumbotron from "../components/Jumbotron";
 import Metadata from "../components/Metadata";
 import Navigation from "../components/Navigation";
-import StudentCardContainer from "../components/Student/StudentCardContainer";
+import NinjaCardContainer from "../components/Ninja/NinjaCardContainer";
 import Footer from "../components/Footer";
 
 const LandingPageContent = () => {
@@ -25,7 +25,7 @@ const LandingPageContent = () => {
 
           <Row>
               <Col>
-                  <StudentCardContainer/>
+                  <NinjaCardContainer/>
               </Col>
           </Row>
       </Container>
